@@ -1,9 +1,11 @@
-﻿using FinancialDataApp;
+﻿using FinancialDataWeb.Api;
 using FinancialDataWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using FinancialDataWeb.ViewModels;
+
 
 namespace FinancialDataWeb.Controllers
 {
@@ -20,7 +22,7 @@ namespace FinancialDataWeb.Controllers
 
         public async Task<IActionResult> Index()
            
-        {
+        {   
             List<SelectListItem> items = new List<SelectListItem>();
             items.Add(new SelectListItem { Text = "Monthly", Value = "1month" });
             items.Add(new SelectListItem { Text = "Weekly", Value = "1week" });

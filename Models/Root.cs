@@ -1,4 +1,4 @@
-﻿using FinancialDataApp;
+﻿using FinancialDataWeb.Models;
 
 public class Root
 {

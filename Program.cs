@@ -1,4 +1,4 @@
-using FinancialDataWeb;
+using FinancialDataWeb.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 

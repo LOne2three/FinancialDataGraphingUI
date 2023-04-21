@@ -1,15 +1,16 @@
-﻿namespace FinancialDataWeb
+﻿namespace FinancialDataWeb.Api
 {
     public class DataProcessor : IDataProcessor<Root>
     {
-        public  async Task<Root> LoadData(string symbol, string interval)
+        public async Task<Root> LoadData(string symbol, string interval)
         {
             string url = "";
-            String api_key = "&apikey=4ea1eb1f53bc4c11add8877c115c10cd";
+            string api_key = "&apikey=4ea1eb1f53bc4c11add8877c115c10cd";
 
             if (!symbol.Equals(""))
             {
                 url = $"https://api.twelvedata.com/time_series?symbol={symbol}&interval={interval}{api_key}";
+
             }
             else
             {
@@ -21,7 +22,7 @@
                 if (response.IsSuccessStatusCode)
                 {
                     string data = await response.Content.ReadAsStringAsync();
-                  
+
                     Root root = Newtonsoft.Json.JsonConvert.DeserializeObject<Root>(data);
                     return root;
 
