@@ -82,7 +82,8 @@
                                     hAxis: { baselineColor: 'none' }
                                 },
                                 chartView: { columns: [0, 4] },
-                            }
+                            },
+                            colors: ['#1c91c0']
                         }
                     });
 
@@ -96,8 +97,8 @@
                                      maxAlternation: 1 },
                             legend: { position: 'none' },
                             candlestick: {
-                                fallingColor: { strokeWidth: 0, fill: '#a52714' },
-                                risingColor: { strokeWidth: 0, fill: '#0f9d58' }
+                                fallingColor: { strokeWidth: 0, fill: '#1c91c0' },
+                                risingColor: { strokeWidth: 0, fill: '#e7711b' }
                             },
                             title: 'Stock Price: ',
                         },
@@ -113,7 +114,8 @@
                             hAxis: { type: 'category', slantedText: false, maxTextLines: 1, 
                                      maxAlternation: 1 },
                             legend: { position: 'none' },
-                            title: "Volume: "
+                            title: "Volume",
+                            colors: ['#1c91c0']
                         },
                         view: { columns: [0, 5] }
                     });
