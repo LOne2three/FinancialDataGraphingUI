@@ -42,7 +42,7 @@ namespace FinancialDataWeb.Controllers
             ViewBag.Items = items;
             try
             {
-                var response = await _dataProcessor.LoadData(viewModel.symbol,viewModel.interval);
+                var response = await _dataProcessor.LoadData(viewModel.symbol,viewModel.Interval);
                 viewModel.root = response;
                 return View(viewModel);
             }

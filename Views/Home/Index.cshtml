@@ -15,11 +15,11 @@
             <span asp-validation-for="symbol" class="text-danger"></span>
         </div>
         <div class="mb-3">
-              <label asp-for="interval"></label>
-            <select asp-for="interval" asp-items="@item" class="form-select">
+              <label asp-for="Interval"></label>
+            <select asp-for="Interval" asp-items="@item" class="form-select">
               <option disabled selected>--Select interval--</option>
             </select>
-            <span asp-validation-for="interval" class="text-danger"></span>
+            <span asp-validation-for="Interval" class="text-danger"></span>
         </div>
    
         <button id="btnCreateChart" type="submit" class="btn btn-primary" style="width:150px">Graph</button>
@@ -50,20 +50,25 @@
                 data.addColumn('number', 'Low');
                 data.addColumn('number', 'Close');
                 data.addColumn('number', 'Volume');
+                data.addColumn({type: 'string', role: 'tooltip', p: {html: true}});
+ 
 
       var obj = @(Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model?.root.values)))
           console.log(obj);
       if (obj!= null) {
           obj.forEach(function(v) {
 
-              data.addRow([new Date(v.datetime), parseInt(v.open), parseInt(v.high), parseInt(v.low), parseInt(v.close), parseInt(v.volume)]);
-              console.log(data);
+              data.addRow([new Date(v.datetime), parseInt(v.open), parseInt(v.high), parseInt(v.low), parseInt(v.close), parseInt(v.volume),customToolTip(v.datetime,v.open,v.high,v.low,v.close)]);
+             
           }
-
-
-
           );
       }
+         function customToolTip(datetime,open, high,low,close) {
+           console.log('test');
+           console.log(high);
+    return "<table>" +"<tr><td>"+ "<b>Date</b>:" + datetime +"</tr></td><tr><td>"+ "<b>Open</b> :" + open + "</tr></td><tr><td>" +"<b>high</b> :" 
+            + high + "</tr></td><tr><td>" + "<b>Low</b> :" + low + "</tr></td><tr><td>"+ "<b>Close</b> :" + close + "</tr></td>"+"</table>"  }
+
       
 
     var dashboard = new google.visualization.Dashboard(chart_div);
@@ -71,6 +76,7 @@
                         controlType: 'ChartRangeFilter',
                         containerId: 'filter',
                         options: {
+                            tooltip: { isHtml: true }, 
                             filterColumnIndex: 0,
                             ui: {
                                 chartType: 'LineChart',
@@ -91,6 +97,7 @@
                         chartType: 'CandlestickChart',
                         containerId: 'candlestick',
                         options: {
+                            tooltip: { isHtml: true }, 
                             chartArea: { height: '150', width: '85%', left: 100, 
                                          backgroundColor: { stroke: "gray", strokeWidth: 1 } },
                             hAxis: { type: 'category', slantedText: false, maxTextLines: 1, 
@@ -102,7 +109,7 @@
                             },
                             title: 'Stock Price: ',
                         },
-                        view: { columns: [0,3,1,4,2] }
+                        view: { columns: [0,3,1,4,2,6] }
                     });
 
                     var volume = new google.visualization.ChartWrapper({
@@ -125,6 +132,7 @@
     dashboard.draw(data);
 
   }
+
     </script>
     }
 

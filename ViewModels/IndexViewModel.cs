@@ -11,7 +11,7 @@ namespace FinancialDataWeb.ViewModels
     {
         public Root? root { get; set; }
 
-        public string? interval { get; set; }
+        public string? Interval { get; set; }
         public string? symbol { get; set; }
     }
 }
